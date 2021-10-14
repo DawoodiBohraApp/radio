@@ -1,122 +1,188 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>HTML5 Audio with playlists</title>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>HTML5 Audio with playlists</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <script
-    type="text/javascript"
-    src="//code.jquery.com/jquery-1.7.js"
-    
-  ></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.7.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
 
     <link rel="stylesheet" type="text/css" href="/css/result-light.css">
 
 
-  <style id="compiled-css" type="text/css">
-      #playing,audio{background:#666;width:400px;padding:20px;}
-.active a{color:#5DB0E6;text-decoration:none;}
-li a{color:#eeeedd;background:#333;padding:5px;display:block;}
-li a:hover{text-decoration:none;}
-    /* EOS */
-  </style>
+    <style id="compiled-css" type="text/css">
+        #playing,
+        audio {
+            background: linear-gradient(to top left, cyan, hotpink, gold);
+            margin-top: 20px;
+            margin-left: 20px;
+            border-radius: 70px;
+        }
 
-  <script id="insert"></script>
+        audio:hover {
+            -webkit-box-shadow: 0px 0px 9px 5px rgba(5, 4, 5, 1);
+            -moz-box-shadow: 0px 0px 9px 5px rgba(5, 4, 5, 1);
+            box-shadow: 0px 0px 9px 5px rgba(5, 4, 5, 1);
+        }
+
+        audio::-webkit-media-controls-panel {
+            background: linear-gradient(to top left, cyan, hotpink, gold);
+        }
+
+        .active a {
+            color: #5DB0E6;
+            text-decoration: none;
+        }
+
+        li a {
+            color: #eeeedd;
+            background: rgb(255, 255, 255);
+            padding: 5px;
+            display: none;
+            list-style: none;
+        }
+
+        li a:hover {
+            text-decoration: none;
+            display: none;
+        }
+
+        img {
+            width: 150px;
+            display: block;
+           
+        }
+        body{
+            background-color: #f3eee8;
+        }
+        h1 {
+            font-family: 'Akronim', cursive;
+            /* font-size: 72px;
+            background: -webkit-linear-gradient(rgb(255, 0, 0), gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; */
+            background-color: #f3ec78;
+            font-size: 40px;
+    background-image: linear-gradient(45deg, cyan, hotpink, gold);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+    text-shadow: rgba(255, 0, 0, 0.288) 10px 10px 10px;
+
+    
+        }
+
+        /* EOS */
+    </style>
+
+    <script id="insert"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Akronim&display=swap" rel="stylesheet">
 
 
 </head>
+
 <body>
-        <audio id="audio" preload="auto" tabindex="0" controls="" type="audio/mpeg">
-        
-    </audio>
-<div id="playing">
-</div>
+    <center>
+        <h1>Dawoodi Bohra App <br>   Radio</h1>
+    </center>
+    <center><img src="radio.png" alt=""></center>
+    <center><audio id="audio" preload="auto" tabindex="0" controls="" type="audio/mpeg">
+
+        </audio>
+        <div id="playing">
+        </div>
+    </center>
 
     <script type="text/javascript">//<![CDATA[
 
 
-var audio;
-var playlist;
-var tracks;
-var current;
+        var audio;
+        var playlist;
+        var tracks;
+        var current;
 
-var musicarr = ["https://www.sautuliman.com/wp-content/uploads/2018/03/Shahe-Deen-Ke-Maulid-Se-Dil-Shaadma-Hai.mp3",
-"https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/01-azizo-suno-dil-na-kaano.mp3",
-"https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/02-Nipat-rakhi-ae-dil-taqwa-khuda-ni.mp3",
-"https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/03-ae-dil-nasihat-sun-meri-dunya-ka-tu-mat-yaar-ho.mp3",
-"https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/04-dil-na-kaano-si-suni-maula-ali-ni-waat-lo.mp3",
-"https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/05-ae-dil-tu-naam-jap-hirde-khuda-na.mp3",
-"https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/06-tamanna-je-bashar-ni-yaha-baqa-che.mp3",
-               ];
-shuffle(musicarr);
+        var musicarr = ["https://www.sautuliman.com/wp-content/uploads/2018/03/Shahe-Deen-Ke-Maulid-Se-Dil-Shaadma-Hai.mp3",
+            "https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/01-azizo-suno-dil-na-kaano.mp3",
+            "https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/02-Nipat-rakhi-ae-dil-taqwa-khuda-ni.mp3",
+            "https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/03-ae-dil-nasihat-sun-meri-dunya-ka-tu-mat-yaar-ho.mp3",
+            "https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/04-dil-na-kaano-si-suni-maula-ali-ni-waat-lo.mp3",
+            "https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/05-ae-dil-tu-naam-jap-hirde-khuda-na.mp3",
+            "https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/06-tamanna-je-bashar-ni-yaha-baqa-che.mp3",
+        ];
+        shuffle(musicarr);
 
-init();
-function init(){
-    current = 0;
-    audio = $('audio');
-    audio[0].volume = .40;
-    len = musicarr.length;
-    
-    run(musicarr[current], audio[0]);
-    
-    audio[0].addEventListener('ended',function(e){
-        current++;
-        if(current == len){
+        init();
+        function init() {
             current = 0;
+            audio = $('audio');
+            audio[0].volume = .40;
+            len = musicarr.length;
+
+            run(musicarr[current], audio[0]);
+
+            audio[0].addEventListener('ended', function (e) {
+                current++;
+                if (current == len) {
+                    current = 0;
+                }
+                run(musicarr[current], audio[0]);
+            });
         }
-        run(musicarr[current],audio[0]);
-    });
-}
 
-function run(link, player){
-        player.src = link;
-        audio[0].load();
-        audio[0].play();
-        $('#playing').html("<ul><li><a>" + link+ "</a></li></ul>");     
-}
+        function run(link, player) {
+            player.src = link;
+            audio[0].load();
+            audio[0].play();
+            // $('#playing').html("<ul><li><a>" + link + "</a></li></ul>");
+        }
 
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex ;
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
 
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
 
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
 
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
 
-  return array;
-}
+            return array;
+        }
 
 
   //]]></script>
 
-  <script>
-    // tell the embed parent frame the height of the content
-    if (window.parent && window.parent.parent){
-      window.parent.parent.postMessage(["resultsFrame", {
-        height: document.body.getBoundingClientRect().height,
-        slug: "vkMqR"
-      }], "*")
-    }
+    <script>
+        // tell the embed parent frame the height of the content
+        if (window.parent && window.parent.parent) {
+            window.parent.parent.postMessage(["resultsFrame", {
+                height: document.body.getBoundingClientRect().height,
+                slug: "vkMqR"
+            }], "*")
+        }
 
-    // always overwrite window.name, in case users try to set it manually
-    window.name = "result"
-  </script>
+        // always overwrite window.name, in case users try to set it manually
+        window.name = "result"
+    </script>
 
 
 </body>
+
 </html>
