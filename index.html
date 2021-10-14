@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>HTML5 Audio with playlists</title>
+    <title>Dawoodi Bohra App Radio</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
@@ -112,13 +112,49 @@
         var tracks;
         var current;
 
-        var musicarr = ["https://www.sautuliman.com/wp-content/uploads/2018/03/Shahe-Deen-Ke-Maulid-Se-Dil-Shaadma-Hai.mp3",
+        var musicarr = [
+            "https://www.sautuliman.com/wp-content/uploads/2018/03/Shahe-Deen-Ke-Maulid-Se-Dil-Shaadma-Hai.mp3",
             "https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/01-azizo-suno-dil-na-kaano.mp3",
             "https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/02-Nipat-rakhi-ae-dil-taqwa-khuda-ni.mp3",
             "https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/03-ae-dil-nasihat-sun-meri-dunya-ka-tu-mat-yaar-ho.mp3",
             "https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/04-dil-na-kaano-si-suni-maula-ali-ni-waat-lo.mp3",
             "https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/05-ae-dil-tu-naam-jap-hirde-khuda-na.mp3",
             "https://www.sautuliman.com/media/audios/saut-volumes/volume-two-of-sautuliman-new-series/06-tamanna-je-bashar-ni-yaha-baqa-che.mp3",
+            "https://alhuzn.com/data/audio/madeh/102_wi_ye_milad_mubarak.mp3",
+            "https://alhuzn.com/data/audio/madeh/75mi-milaad-aali-qadr.mp3",
+            "https://alhuzn.com/data/audio/madeh/Aa_chand_fida_che_mohammad_par.mp3",
+            "https://alhuzn.com/data/audio/madeh/Aa_moiz_ni_mai_shaanat_dekhun.mp3",
+            "https://alhuzn.com/data/audio/madeh/Aa_moiz_ni_mai_shaanat_dekhun.mp3",
+            "https://alhuzn.com/data/audio/madeh/Aa_moula_mufaddal_nu_farmaan_aem_che.mp3",
+            "https://alhuzn.com/data/audio/madeh/Aalam_mai_yumno_khair.mp3",
+            "https://alhuzn.com/data/audio/madeh/Aankhe_is_khalq.mp3",
+            "https://alhuzn.com/data/audio/madeh/Ae_aa_dawat_ma_aayat_khuda_ni.mp3",
+            "https://alhuzn.com/data/audio/madeh/ae-aali-qadar-ae-shahe-zaman.mp3",
+            "https://alhuzn.com/data/audio/madeh/Ae_burhanulhuda_tu_kaha_hum_kaha.mp3",
+            "https://alhuzn.com/data/audio/madeh/Ae_dil_tujhe.mp3",
+            "https://alhuzn.com/data/audio/madeh/ae-hamdo-hamid-e-mahmood.mp3",
+            "https://alhuzn.com/data/audio/madeh/Ae_khuda_tujh_se_hai_ye_meri_iltija.mp3",
+            "https://alhuzn.com/data/audio/madeh/Ae_Maula_Mufaddal_Ae_Dail_Husain.mp3",
+            "https://alhuzn.com/data/audio/madeh/Ae_meh_jabeen_mehre_mubin.mp3",
+            "https://alhuzn.com/data/audio/madeh/Ae_moula_teri_ik_nigahe_karam.mp3",
+            "https://alhuzn.com/data/audio/madeh/Ae_moula_teri_walayat_hai_eid_ki_khushiya.mp3",
+            "https://alhuzn.com/data/audio/madeh/Ae_rab_tu_mohammad_na_chehra.mp3",
+            "https://alhuzn.com/data/audio/madeh/Ae_saifuddin_na_jaani.mp3",
+            "https://alhuzn.com/data/audio/madeh/AJAB_NOORE_MUNAZZAL_CHHE_SIFATO_MA.mp3",
+            "https://alhuzn.com/data/audio/madeh/Ajab_quran_ka_hafiz_hai.mp3",
+            "https://alhuzn.com/data/audio/madeh/Ajab_taazgi_aaj_gulzar_mai.mp3",
+            "https://alhuzn.com/data/audio/madeh/Andaze_karam_hai_mere_aqa_ke_nirale.mp3",
+            "https://alhuzn.com/data/audio/madeh/Bahar_hai_deen_ke_chaman_mai.mp3",
+            "https://alhuzn.com/data/audio/madeh/Bahare_aisho_aishrat_hai.mp3",
+            "https://alhuzn.com/data/audio/madeh/Banul_mustafa_walmurtaza_wadoatohom.mp3",
+            "https://alhuzn.com/data/audio/madeh/Baqi_rahe_burhanedi.mp3",
+            "https://alhuzn.com/data/audio/madeh/Basaateen_ul_duat.mp3",
+            "https://alhuzn.com/data/audio/madeh/bazme-aali-qadr.mp3",
+            "https://alhuzn.com/data/audio/madeh/Buhanedi_maula_ni_hub_dil_ma.mp3",
+            "https://alhuzn.com/data/audio/madeh/burhane-deen-na-laal-che.mp3",
+            "https://alhuzn.com/data/audio/madeh/Burhanedeen_ma_jalwo.mp3",
+            "https://alhuzn.com/data/audio/madeh/Burhanedeen_maula_hein_rahnuma_hamara.mp3",
+            "https://alhuzn.com/data/audio/madeh/Burhanedeen_moula_ni_hub_dil.mp3",
         ];
         shuffle(musicarr);
 
